@@ -399,44 +399,14 @@ var viewModel = function() {
         }        
     };
     // the empty array of markers
-    this.markerArray = ko.observableArray();
+    this.markerArray = [];
+    this.markerArrayC = [];
     // the empty array of infowindows
     this.infowindowArray = ko.observableArray();
 
     this.searchString = ko.observable("");
 
-    // the results of search
-    this.searchResults = ko.computed(function() {
-        if(self.searchString() === '') {
-            self.visibleCastles(self.castleList());
-            self.markerArray().forEach(function(marker) {
-                marker.setMap(map);
-            });
-            self.infowindowArray().forEach(function(infowindow) {
-                infowindow().close();
-            });
-        } else {
-            self.visibleCastles([]);
-            self.markerArray().forEach(function(marker) {
-                marker.setMap(null);
-            });
-            self.castleList().forEach(function(castle) {
-                if(castle.name.toLowerCase().indexOf(self.searchString().toLowerCase()) >= 0) {
-                    self.visibleCastles().push(castle);
-                    self.markerArray().forEach(function(marker) {
-                        if(castle.name === marker.title) {
-                            marker.setMap(map);
-                        }
-                    });
-                    self.infowindowArray().forEach(function(infowindow) {
-                        infowindow().close();
-                    });
-                }
-            });
-        }     
-      
-        return self.visibleCastles();
-    }, this);
+
 
     // show map
     this.initMap = function() {
@@ -448,7 +418,7 @@ var viewModel = function() {
             // create marker, place marker and save it to data about the castle            
             castle.marker = new google.maps.Marker(new MarkerInfo(castle.name, castle.position));
             // add marker to the array of markers
-            self.markerArray().push(castle.marker);            
+            self.markerArray.push(castle.marker);         
 
             // create an infowindow 
             castle.infowindow = ko.computed(function() {
@@ -488,7 +458,46 @@ var viewModel = function() {
                 castle.isOpen = false;
             }));
         });
+        
     };
+
+    // the results of search
+    this.searchResults = ko.computed(function() {
+        
+        if(self.searchString() === '') {
+            console.log(self.markerArray);
+            self.visibleCastles(self.castleList());
+            self.markerArray.forEach(function(marker) {
+                marker.setMap(map);
+            });
+            self.infowindowArray().forEach(function(infowindow) {
+                infowindow.close();
+            });
+        } else {
+            self.visibleCastles([]);
+            self.markerArray.forEach(function(marker) {
+                
+                marker.setMap(null);
+                
+            });
+            self.castleList().forEach(function(castle) {
+                if(castle.name.toLowerCase().indexOf(self.searchString().toLowerCase()) >= 0) {
+                    self.visibleCastles().push(castle);
+                    self.markerArray.forEach(function(marker) {
+                        if(castle.name === marker.title) {
+                            marker.setMap(map);
+                        }
+                    });
+                    self.infowindowArray().forEach(function(infowindow) {
+                        infowindow.close();
+                    });
+                }
+            });
+        }
+
+        return self.visibleCastles();
+             
+    }, this);
 
 
     // set the map height according to actual layout 
@@ -556,7 +565,7 @@ var viewModel = function() {
     
     // function that determines what happens if the arrow of the search bar is clicked
     this.arrowClicked = function() {
-
+       
         if(!isSearchBar()) {
             if(isLandscape()) {
                 showHide("Hide", "10px 15px 5px 0", "block", "block", "width", "35%", "65%");
@@ -577,6 +586,7 @@ var viewModel = function() {
             });                                
             
         } else {
+            
             if(isLandscape()) {
                 showHide("Search", "0", "none", "none", "width", "7%", "93%");
                 
