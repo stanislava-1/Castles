@@ -465,7 +465,7 @@ var viewModel = function() {
     this.searchResults = ko.computed(function() {
         
         if(self.searchString() === '') {
-            console.log(self.markerArray);
+            
             self.visibleCastles(self.castleList());
             self.markerArray.forEach(function(marker) {
                 marker.setMap(map);
