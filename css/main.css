@@ -1,0 +1,286 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+} 
+
+html, body {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.search-container {
+	width: 100%;
+	height: 7%;	
+	transform: translate(0, 0);	 	
+    background-color: #808080;
+    box-shadow: inset 0px 0px 50px 10px rgba(0,0,0,0.6);    
+    padding: 0 0 5px 15px;
+    color: #fff;
+    font-family: 'Verdana', Arial, Tahoma;
+    font-size: small;
+    overflow: auto;
+    margin: 0;   
+}
+
+#show-hide {
+	text-align: center;
+	padding: 0 15px 15px 0;
+	cursor: pointer;	
+}
+
+.search-form, .search-results {
+	width: 92%;
+	display: none;	
+}
+
+#search-input {
+	height: 32px;
+	width: 100%;
+	border-radius: 5px;
+	color: black;
+	padding: 8px;	
+}
+
+#search-input-label {
+	margin: 0 0 7px 0;
+}
+
+.search-results {
+	height: 70%;
+}
+
+#result-box {
+	color: black;
+	padding: 8px;
+	background-color: #fff;
+	height: 72%;	
+	width: 100%;
+	border-radius: 5px;
+	border-style: inset;
+	overflow: auto;
+}
+
+#result-box-label {
+	margin: 7px 0;
+}
+
+#result-list {
+	padding-left: 0;
+}
+
+.result-item {
+	list-style-type: none;
+	padding-bottom: 15px;
+	cursor: pointer;
+}
+
+.search-footer {
+	font-size: 13px;
+	position: absolute;
+	bottom: 10px;
+	display: none;
+}
+
+.map-container {	
+	width: 100%;
+	height: 93%;
+	margin: 0;	
+}
+
+.header {	
+    width: 100%;
+    height: auto;        
+    padding: 3px 10px;
+   	text-align: center;
+	background-color: #DCDCDC;
+	box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.2);
+	border-bottom-style: solid;
+	border-bottom-color: #A9A9A9;
+	font-family: 'Arial Black', Verdana, Tahoma;
+	font-weight: bold;
+	font-size: x-large;	
+	display: block;		
+}
+
+.middle {
+	width: 100%;	
+}
+
+
+#castle-image {
+	position: fixed;
+	top: 40px;
+	right: 80px;
+	height: 170px;
+	width: auto;
+	display: none;	
+}
+
+.footer {	
+    height: 5%;
+    width: 100%;
+    background-image: url("stonewall.png");
+    background-repeat: repeat;
+    background-color: #F5F5F5;
+    box-shadow: inset 0px 0px 50px 5px rgba(0,0,0,0.2);
+    display: none;
+}
+
+
+/* infowindows */
+
+.iw-content {
+	padding: 0px 0px 10px 10px;
+	max-width: 290px;
+}
+
+.castle-name {	
+	color: #1E90FF;
+}
+
+.wiki-links {
+	padding-left: 20px;
+	padding-top: 0;
+	margin-top: 0;
+}
+
+
+/* media queries */
+@media screen and (orientation: landscape) {
+	.search-container {				
+		height: 100%;
+		width: 7%;
+		padding-left: 2%;
+	}
+
+	.map-container {
+		
+		height: 100%;		
+		width: 93%;
+		float: right;		
+	}
+
+	#show-hide {
+		position: fixed;
+		top: calc(100vh/2 - 30px);
+		display: flex;
+		padding: 0;
+	}
+
+	#search {		
+		writing-mode: vertical-rl;
+		order: -1;
+	}
+
+	#arrow {
+		padding-top: 15px;		
+	}		
+}
+
+
+@media screen and (min-width: 800px) {
+	.header {
+		font-size: xx-large;
+	}
+
+	.search-form {
+		margin-top: 20px;
+	}
+
+	#search-input-label, #result-box-label {
+		margin: 13px 0;
+	}
+	
+}
+
+
+@media screen and (min-width: 600px) and (orientation: portrait) {
+	.search-form, .search-results {
+		width: 100%;		
+	}
+
+	.search-container {
+		padding: 2% 4%;
+	}
+
+	#result-box {
+		-moz-column-count: 2;
+	    -moz-column-gap: 0;
+	    -webkit-column-count: 2;
+	    -webkit-column-gap: 0;
+	    column-count: 2;
+	    column-gap: 0;
+	    height: 90%;	    
+	}
+}
+
+
+@media screen and (min-width: 1200px) and (orientation: landscape) {
+	.search-container {
+		width: 20%;
+		padding: 2% 1.8%;
+	}
+
+	.map-container {
+		width: 80%;
+	}
+
+	#show-hide {
+		display: none;
+	}
+
+	.search-form, .search-results {
+		display: block;
+		width: 100%;
+	}	
+
+	.search-footer {
+		display: block;		
+	}
+
+	#result-box {
+		height: 85%
+	}
+}
+
+@media screen and (min-height: 1200px) and (orientation: portrait) {
+	.search-container {
+		height: 40%;
+		padding: 2% 3%;
+	}
+
+	.map-container {
+		height: 60%;
+	}
+
+	#show-hide {
+		display: none;
+	}
+
+	.search-form, .search-results {
+		display: block;
+	}
+
+	#search-input-label, #result-box-label {
+		margin: 13px 0;
+	}
+
+	.search-footer {
+		display: block;		
+	}	
+}
+
+@media screen and (min-width: 1500px) {
+	#castle-image {
+		display: block;
+	}
+
+	.footer {
+		display: block;
+	}
+}

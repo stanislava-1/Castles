@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+	    <meta charset="UTF-8">
+	    <title>Slovak Castles</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >    
+	    <link rel="stylesheet" href="css/main.css">	   
+
+	</head>
+
+	<body>		
+		<!-- map with markers + its header and footer -->
+		<div class="map-container">
+			<div class="header">Castles and Manor Houses in Slovakia</div>		
+			<div class="middle" id="map"></div>
+			<img id="castle-image" src="images/castle.png" alt="castle">			
+			<div class="footer"></div>
+		</div>
+
+		<!-- search bar -->
+		<div class="search-container">
+
+			<!-- element displayed only on small devices -->
+			<div id="show-hide" data-bind="click: arrowClicked">			
+				<span id="arrow" data-bind="html: chooseArrow"></span><br>
+				<span id="search">Search</span>
+			</div>
+
+			<!-- the box for entering searched string -->
+			<form class="search-form">
+				<p id="search-input-label">Search:</p>
+	  			<input id="search-input" type="search" placeholder="All" data-bind="textInput: searchString" autocomplete="off">
+			</form>
+
+			<!-- the box for the list of actually displayed castles -->
+			<div class="search-results">
+				<p id="result-box-label">Search Results:</p>
+				<div id="result-box">				
+					<ul id="result-list" data-bind="foreach: searchResults">
+						<li class="result-item">						
+								<span data-bind="text: name, attr: {id: name}, click: itemIsClicked, event: {mouseover: boldFont, mouseout: normalFont}"></span>						
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<p class="search-footer">&#9400; Stanislava Kočalková, 2016</p>
+
+		</div>	
+	   
+	    <script data-bind="attr: {src: googleApiSrc}" async defer></script> 
+	    <script src="js/knockout-3.4.0.js"></script>
+	    <script src="js/jquery.min.js"></script>  
+	    <script src="js/app.js"></script>	    
+	</body>
+
+</html>
